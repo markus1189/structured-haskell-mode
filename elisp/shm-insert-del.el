@@ -230,12 +230,12 @@ the current node to the parent."
            (looking-at "-}"))
       (progn (insert "#  #")
              (forward-char -2)
-             (let ((pragma (ido-completing-read "Pragma: "
+             (let ((pragma (funcall completing-read-function "Pragma: "
                                                 shm-pragmas)))
                (insert pragma
                        " ")
                (when (string= pragma "LANGUAGE")
-                 (insert (ido-completing-read
+                 (insert (funcall completing-read-function
                           "Language: "
                           (remove-if (lambda (s) (string= s ""))
                                      (split-string (shell-command-to-string "ghc --supported-languages")
